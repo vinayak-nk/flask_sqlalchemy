@@ -12,7 +12,8 @@ class Config:
 class DevConfig(Config):
   SQLALCHEMY_ECHO = True
   DEBUG=True
-  FLASK_ENV=config('FLASK_ENV_DEV') 
+  SQLALCHEMY_DATABASE_URI= 'sqlite:///{}'.format(os.path.join(BASE_DIR, 'dev.db'))
+  # FLASK_ENV=config('FLASK_ENV_DEV') 
 
 class ProdConfig(Config):
   SQLALCHEMY_ECHO = True
@@ -25,7 +26,7 @@ class TestConfig(Config):
   SQLALCHEMY_DATABASE_URI= 'sqlite:///{}'.format(os.path.join(BASE_DIR, 'test.db'))
   SQLALCHEMY_ECHO=False
   TESTING=True
-  FLASK_ENV=config('FLASK_ENV_DEV')
+  # FLASK_ENV=config('FLASK_ENV_DEV')
 
 # from dotenv import load_dotenv
 
