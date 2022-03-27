@@ -18,4 +18,16 @@ class User(db.Model):
   def __repr__(self) -> str:
       return f'<User> {self.email}'
   
+class Owner(db.Model):
+  id = db.Column(db.Integer, primary_key=True)
+  name = db.Column(db.String(50), nullable=False)
+  address = db.Column(db.String(100))
+  pets = db.relationship('Pet', backref='owner')
   
+class Pet(db.Model):
+  id = db.Column(db.Integer, primary_key=True)
+  name = db.Column(db.String(50), nullable=False)
+  age = db.Column(db.Integer)
+  owner_id = db.Column(db.Integer, db.ForeignKey('owner.id')) #parent table name in lower case eg: owner
+  
+
